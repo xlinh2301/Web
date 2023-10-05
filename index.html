@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENU</title>
+    <link rel="stylesheet" href="/box_menu/assets/css/style.css">
+</head>
+<body>
+    <div id="contextMenu" class="context-menu">
+        <ul class="mega-menu-list">
+            <li class="mega-menu-item">
+                <a href="https://mona.media/lien-he/?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=lien-he-menu-an" class="d-flex openPopMona" data-popup="solutions" data-wpel-link="internal">
+                    <span class="mega-menu-img">
+                        <img class="sticker" loading="lazy" src="https://mona.media/template/assets/images/mega-menu/icon-contact.svg" alt="">
+                    </span>
+                    <span class="mega-menu-txt">
+                        <span class="title">Liên hệ ngay</span>
+                    </span>
+                </a>
+            </li>
+            <li class="mega-menu-item">
+                <a href="https://mona.media/du-an/?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=du_an_menu_an" class="d-flex" data-wpel-link="internal">
+                    <span class="mega-menu-img">
+                        <img class="sticker" loading="lazy" src="https://mona.media/template/assets/images/mega-menu/icon-project.svg" alt="">
+                    </span>
+                    <span class="mega-menu-txt">
+                        <span class="title">Xem dự án</span>
+                    </span>
+                </a>
+            </li>
+            <li class="mega-menu-item">
+                <a href="https://www.facebook.com/thietkewebsitemonamedia?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=facebook_menu_an" target="_blank" class="d-flex" data-wpel-link="external" rel="external noopener noreferrer">
+                    <span class="mega-menu-img">
+                        <img class="sticker" loading="lazy" src="https://mona.media/template/assets/images/mega-menu/icon-fanpage.svg" alt="">
+                    </span>
+                    <span class="mega-menu-txt">
+                        <span class="title">Tham gia fanpage</span>
+                    </span>
+                </a>
+            </li>
+            <li class="mega-menu-item">
+                <a href="https://www.youtube.com/@MONA-Media?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=youtube_menu_an" target="_blank" class="d-flex" data-wpel-link="external" rel="external noopener noreferrer">
+                <span class="mega-menu-img">
+                <img class="sticker" loading="lazy" src="https://mona.media/template/assets/images/mega-menu/icon-channel.svg" alt="">
+                </span>
+                <span class="mega-menu-txt">
+                    <span class="title">Xem MONA.Channel</span>
+                </span>
+                </a>
+            </li>
+        
+        </ul>
+    </div>
+</body>
+</html>
+
+<script>
+// chuc nang chinh
+document.addEventListener('contextmenu', (event) => {
+    event.preventDefault();
+    const contextMenu = document.getElementById('contextMenu');
+    const mouseX = event.clientX + window.pageXOffset;
+    const mouseY = event.clientY + window.pageYOffset;
+    const pageWidth = document.body.scrollWidth;
+    const pageHeight = document.body.scrollHeight;
+    const menuWidth = contextMenu.offsetWidth;
+    const menuHeight = contextMenu.offsetHeight;
+    let adjustedX = mouseX;
+    let adjustedY = mouseY;
+    if (mouseX + menuWidth > pageWidth) {
+    adjustedX = pageWidth - menuWidth;
+    }
+    if (mouseY + menuHeight > pageHeight) {
+    adjustedY = pageHeight - menuHeight;
+    }
+    contextMenu.style.display = 'block';
+    contextMenu.style.top = `${adjustedY}px`;
+    contextMenu.style.left = `${adjustedX}px`;
+});
+document.addEventListener('click', () => {
+    const contextMenu = document.getElementById('contextMenu');
+    contextMenu.style.display = 'none';
+});
+
+
+// open new tab va copy link
+let selectedLink = null;
+function showOpenNewTabButton(x, y) {
+    const openNewTabItem = document.getElementById('openNewTabItem');
+    const opencopyItem = document.getElementById('opencopyItem');
+    if (selectedLink) {
+        openNewTabItem.style.display = 'block';
+        opencopyItem.style.display = 'block';
+        openNewTabItem.innerHTML = `<button onclick="openNewTab()"><i class="fa-regular fa-plus"></i> Mở tab mới</button>`;
+        opencopyItem.innerHTML = `<button onclick="copyLink()"><i class="fa-regular fa-copy"></i> Sao chép link</button>`;
+        openNewTabItem.style.top = `${y}px`;
+        openNewTabItem.style.left = `${x}px`;
+    } else {
+        openNewTabItem.style.display = 'none';
+        opencopyItem.style.display = 'none';
+    }
+}
+function openNewTab() {
+    window.open(selectedLink, '_blank');
+}
+function copyLink() {
+    const linkTextArea = document.createElement('textarea');
+    linkTextArea.value = selectedLink;
+    document.body.appendChild(linkTextArea);
+    linkTextArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(linkTextArea);
+    console.log('Đã sao chép:', selectedLink);
+}
+document.addEventListener('contextmenu', (event) => {
+    const target = event.target;
+    if (target.tagName === 'A' || target.closest('a')) {
+        selectedLink = target.tagName === 'A' ? target.href : target.closest('a').href;
+    } else if (target.tagName === 'BUTTON' || target.closest('button')) {
+        const buttonElement = target.tagName === 'BUTTON' ? target : target.closest('button');
+        const onclickAttribute = buttonElement.getAttribute('onclick');
+        if (onclickAttribute) {
+            const urlMatch = onclickAttribute.match(/location.href=['"](.*?)['"]/);
+            if (urlMatch && urlMatch[1]) {
+                selectedLink = urlMatch[1];
+            }
+        }
+    } else {
+        selectedLink = null;
+    }
+    showOpenNewTabButton(event.clientX, event.clientY);
+});
+document.addEventListener('click', () => {
+    selectedLink = null;
+    showOpenNewTabButton(0, 0);
+});
+
+// sao chep text
+function copySelectedText() {
+    const content = document.getElementById('content');
+    const selectedText = window.getSelection().toString();
+    if (selectedText) {
+        const dummyTextArea = document.createElement('textarea');
+        dummyTextArea.value = selectedText;
+        document.body.appendChild(dummyTextArea);
+        dummyTextArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummyTextArea);
+        console.log('Đã sao chép:', selectedText);
+    } 
+}
+const copycontent = document.getElementById('copycontent');
+document.addEventListener('selectionchange', () => {
+    const selectedText = window.getSelection().toString();
+    if (selectedText) {
+        copycontent.style.display = 'block';
+    } else {
+        copycontent.style.display = 'none';
+    }
+});
+</script>
