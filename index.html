@@ -4,7 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MENU</title>
-    <link rel="stylesheet" href="/box_menu/assets/css/style.css">
+    <!-- <link rel="stylesheet" href="/box_menu/assets/css/style.css"> -->
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        li {
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+
+        ol, ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .context-menu {
+            position: fixed;
+            z-index: 3000000000;
+            list-style-type: none;
+            padding: 10px;
+            background: #fff;
+            border-radius: 1rem;
+            width: max-content;
+            box-shadow: 0 0 4px rgba(0,0,0,.16);
+        }
+        .context-menu ul {
+            list-style-type: none;
+            margin: 0px;
+            padding: 0px;
+        }
+        .context-menu button {
+            border: none;
+            width: 100%;
+            background: none;
+            text-align: left;
+            padding: 0px;
+            display: grid;
+        }
+        .context-menu a{
+            text-decoration: none;
+            color: inherit;
+        }
+        #contextMenu ul li {
+        }
+        #contextMenu ul li:hover{
+            background:#ccc;
+            padding:5px 10px;
+            border-radius:7px;
+        }
+        #contextMenu ul li i{
+            margin-right:7px;
+            color:#0c0;
+        }
+        .mega-menu-item:not(:last-child) {
+            margin-bottom: 2px;
+        }
+        .mega-menu-item:nth-child(5n+1) .mega-menu-img {
+            background-color: #f2f8ff;
+        }
+
+        .mega-menu-item img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+        img {
+            vertical-align: middle;
+            transition: 1s;
+        }
+
+        .mega-menu-img {
+            padding: 1px;
+        }
+        ul.menu-lh {
+            border-top: 2px solid #ccc;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .d-flex {
+            align-items: center;
+            -webkit-align-items: center;
+            padding: 12px 4px;
+            padding-right: 16px;
+            transition: .3s;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+        }
+        .sticker {
+            width: 40px;
+            height: 40px;
+        }
+        .mega-menu-txt {
+            margin-left: 16px;
+            text-transform: initial;
+            line-height: 1.2;
+        }
+        .mega-menu-txt .title {
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+            color: #3a3a3a;
+            text-align:center
+        }
+        .popper-contextMenu {
+            position: fixed;
+            z-index: 3000000000;
+            list-style-type: none;
+            padding: 16px;
+            background: #fff;
+            border-radius: 16px;
+            width: max-content;
+            box-shadow: 0 0 0.4rem rgba(0,0,0,.16);
+        }
+    </style>
 </head>
 <body>
     <div id="contextMenu" class="context-menu">
