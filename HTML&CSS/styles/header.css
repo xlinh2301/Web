@@ -1,8 +1,20 @@
 .header {
     height: 55px;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+
+    background-color: white;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(228, 228, 228);
 }
 
 .left-section {
@@ -32,7 +44,7 @@
 .search-bar {
     height: 36px;
     flex: 1;
-    padding-left: 12px;
+    padding-left: 10px;
     font-size: 16px;
     border-width: 1px;
     border-style: solid;
@@ -48,7 +60,7 @@
 }
 
 .search-button {
-    height: 40px;
+    height: 39px;
     width: 66px;
     background-color: rgb(240, 240, 240);
     border-width: 1px;
@@ -58,9 +70,46 @@
     margin-right: 10px;
 }
 
+.search-button,
+.voice-search-button,
+.upload-icon-container,
+.youtube-apps-icon-container,
+.notifications-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-button .tooltip,
+.voice-search-button .tooltip,
+.upload-icon-container .tooltip,
+.youtube-apps-icon-container .tooltip,
+.notifications-container .tooltip {
+    font-family: Roboto, Arial;
+    font-size: 12px;
+    position: absolute;
+    opacity: 0;
+    background-color: gray;
+    color: white;
+    border-radius: 2px;
+    padding: 4px 8px;
+    bottom: -30px;
+    transition: opacity 0.15s;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.search-button:hover .tooltip,
+.voice-search-button:hover .tooltip,
+.upload-icon-container:hover .tooltip,
+.youtube-apps-icon-container:hover .tooltip,
+.notifications-container:hover .tooltip {
+    opacity: 1;
+}
+
 .search-icon {
     height: 25px;
-    margin-top: 4px;
 }
 
 .voice-search-button {
@@ -96,8 +145,24 @@
     height: 24px;
 }
 
-.my-channel-icon{
+.notifications-container {
+    position: relative;
+}
+
+.notifications-counts {
+    font-family: Roboto, Arial;
+    font-size: 11px;
+
+    position: absolute;
+    background-color: rgb(181, 0, 0);
+    color: white;
+    top: -2px;
+    right: -5px;
+    padding: 2px 5px;
+    border-radius: 10px;
+}
+
+.current-user-picture{
     height: 32px;
     border-radius: 16px;
 }
-
